@@ -1,0 +1,51 @@
+
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+// get http://localhost:8080/머시기.do
+@WebServlet("*.do")
+public class MyServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public MyServlet() {
+        super();
+    }
+
+//    @Override
+//    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//    	System.out.println("service 요청됨.");
+//    	if (request.getMethod().equals("GET")) {
+//    		doGet(request, response);
+//		}
+//    	super.service(arg0, arg1);
+//    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doGet 요청됨.");
+		
+		String html = "<!DOCTYPE html>\r\n" + 
+				"<html>\r\n" + 
+				"<head>\r\n" + 
+				"<meta charset=\"UTF-8\">\r\n" + 
+				"<title>Insert title here</title>\r\n" + 
+				"</head>\r\n" + 
+				"<body>\r\n" + 
+				"<%\r\n" + 
+				"	String name = \"홍길동\";\r\n" + 
+				"%>\r\n" + 
+				"<h1>나의 이름은 :<%=name %></h1>\r\n" + 
+				"\r\n" + 
+				"</body>\r\n" + 
+				"</html>";
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost 요청됨.");
+	}
+
+}

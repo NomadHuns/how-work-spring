@@ -1,0 +1,11 @@
+package config;
+
+public class ViewResolver {
+	
+	private static String prefix = "/WEB-INF/views/";
+	private static String suffix = ".jsp";
+	
+	public static String genarate(String viewName) {
+		
+	}
+}

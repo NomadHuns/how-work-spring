@@ -1,0 +1,60 @@
+
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+// get http://localhost:8080/머시기.do == *.do
+@WebServlet("/home.do")
+public class MyServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public MyServlet() {
+    	super();
+    	System.out.println("서블릿 생성");
+    }
+
+//    @Override
+//    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//    	System.out.println("service 요청됨.");
+//    	if (request.getMethod().equals("GET")) {
+//    		doGet(request, response);
+//		}
+//    	super.service(arg0, arg1);
+//    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doGet 요청됨.");
+		
+		String html = "<!DOCTYPE html>" + 
+				"<html>" + 
+				"<head>" + 
+				"<meta charset=\"UTF-8\">" + 
+				"<title>Insert title here</title>" + 
+				"</head>" + 
+				"<body>";
+		String name = "홍길동";
+		html += "<h1>나의 이름은 : " + 
+				name +
+				"</h1>" + 
+				"" + 
+				"</body>" + 
+				"</html>";
+		
+		// Stream에 쓰기 버퍼 달기
+		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(response.getOutputStream()));
+		bufferedWriter.write(html+"\r\n");
+		bufferedWriter.flush();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost 요청됨.");
+	}
+
+}

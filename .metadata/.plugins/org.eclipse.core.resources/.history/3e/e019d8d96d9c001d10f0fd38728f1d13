@@ -1,0 +1,24 @@
+package controller;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+public class UserController {
+	private UserController() {
+	}
+	private static UserController userController = new UserController();
+	
+	public static UserController getInstance() {
+		return userController;
+	}
+
+	public void join(HttpServletResponse resp) throws IOException {
+		System.out.println("join 요청됨");
+		resp.sendRedirect("WEB-INF/user/join.jsp");
+	}
+	
+	public void userinfo() {
+		System.out.println("userinfo 요청됨");
+	}
+}

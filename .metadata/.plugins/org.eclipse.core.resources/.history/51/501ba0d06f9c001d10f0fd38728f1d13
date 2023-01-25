@@ -1,0 +1,15 @@
+package controller;
+
+
+public class BoardController {
+
+	public String list() {
+		System.out.println("list 요청됨");
+		return "/WEB-inf/views/board/list.jsp";
+	}
+	
+	public String detail() {
+		System.out.println("detail 요청됨");
+		return "/WEB-inf/views/board/detail.jsp";
+	}
+}

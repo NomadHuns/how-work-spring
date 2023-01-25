@@ -1,0 +1,12 @@
+package controller;
+
+public class UserController {
+
+	public void join() {
+		System.out.println("join 요청됨");
+	}
+	
+	public void userinfo() {
+		System.out.println("userinfo 요청됨");
+	}
+}

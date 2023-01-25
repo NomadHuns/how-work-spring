@@ -1,0 +1,21 @@
+package controller;
+
+public class UserController {
+	private UserController() {
+	}
+	private static UserController userController = new UserController();
+	
+	public static UserController getInstance() {
+		return userController;
+	}
+
+	public String join() {
+		System.out.println("join 요청됨");
+		return "/WEB-INF/views/board/list.jsp";
+	}
+	
+	public String userinfo() {
+		System.out.println("userinfo 요청됨");
+		return "/WEB-INF/views/user/userinfo.jsp";
+	}
+}

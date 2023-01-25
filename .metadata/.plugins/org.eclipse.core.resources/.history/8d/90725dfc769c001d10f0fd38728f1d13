@@ -1,0 +1,22 @@
+package controller;
+
+import model.BoardRepository;
+
+public class BoardController {
+	
+	private final BoardRepository boardRepository;
+	
+	public BoardController(BoardRepository boardRepository) {
+		this.boardRepository = boardRepository;
+	}
+
+	public String list() {
+		System.out.println("list 요청됨");
+		return "board/list";
+	}
+	
+	public String detail() {
+		System.out.println("detail 요청됨");
+		return "board/detail";
+	}
+}

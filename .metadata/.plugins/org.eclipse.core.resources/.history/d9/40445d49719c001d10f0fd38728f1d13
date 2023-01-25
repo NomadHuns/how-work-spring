@@ -1,0 +1,55 @@
+package config;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import controller.BoardController;
+import controller.UserController;
+
+/*
+ * http//localhost:8080/user/join.do
+ * http//localhost:8080/user/userinfo.do
+ * http//localhost:8080/board/list.do
+ * http//localhost:8080/board/detail.do
+ */
+
+@WebServlet("*.do")
+public class DispatcherServlet extends HttpServlet{
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String path = req.getRequestURI().substring(1).split("/")[0];
+		String action = req.getRequestURI().substring(1).split("/")[1].replace(".do", "");
+		System.out.println(path);
+		System.out.println(action);
+		
+		if (path.equals("user")) {
+			UserController userCon = UserController.getInstance();
+			if (action.equals("join")) {
+				String viewName = userCon.join();
+				String viewPath = ViewResolver.genarate(viewName);
+				req.getRequestDispatcher(viewName).forward(req, resp);
+			} else if (action.equals("userinfo")) {
+				String viewName = userCon.userinfo();
+				req.getRequestDispatcher(viewName).forward(req, resp);
+			}
+		} else if (path.equals("board")) {
+			BoardController boardCon = new BoardController();
+			if (action.equals("list")) {
+				String viewName = boardCon.list();
+				req.getRequestDispatcher(viewName).forward(req, resp);
+			} else if (action.equals("detail")) {
+				String viewName = boardCon.detail();
+				req.getRequestDispatcher(viewName).forward(req, resp);
+			}
+		}
+	}
+}

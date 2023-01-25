@@ -1,0 +1,29 @@
+package controller;
+
+import config.Model;
+import model.User;
+import model.UserRepository;
+
+public class UserController {
+	private UserRepository userRepository = new UserRepository();
+	private UserController() {
+	}
+	private static UserController userController = new UserController();
+	
+	public static UserController getInstance() {
+		return userController;
+	}
+	
+
+	public String join() {
+		System.out.println("join 요청됨");
+		return "join ok";
+	}
+	
+	public String userinfo(Model model) {
+		System.out.println("userinfo 요청됨");
+		User user = userRepository.findById(1);
+		model.addAttribude("user", user);
+		return "user/userinfo";
+	}
+}

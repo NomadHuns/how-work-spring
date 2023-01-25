@@ -1,0 +1,10 @@
+package model;
+
+public class UserRepository {
+	public User join() {
+		return null;
+	}
+	public User userinfo() {
+		return null;
+	}
+}
